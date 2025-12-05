@@ -1,0 +1,132 @@
+# API Configuration
+api:
+  base_url: "https://api.tokenfactory.nebius.com/v1/"
+  api_key: "v1.CmQKHHN0YXRpY2tleS1lMDBwenJzbjllbmVzYm5udDYSIXNlcnZpY2VhY2NvdW50LWUwMGtkdHY3Z3RmemQ5ajF3ejIMCMmrmMkGEJjasZ4COgwIyK6wlAcQgIe5ggJAAloDZTAw.AAAAAAAAAAGHGKYqMVlu_II6VT9QPPOrQAGTfTXZSaoC7kJnFwJB5DF54LhLIyCMaKMhsBZlRmVVbGU5cgyc9q9O64EL5QUA"
+  model: "meta-llama/Llama-3.3-70B-Instruct"
+
+# Available models (for reference):
+# - moonshotai/Kimi-K2-Instruct
+# - moonshotai/Kimi-K2-Thinking
+# - Qwen/Qwen3-Coder-480B-A35B-Instruct
+# - zai-org/GLM-4.5
+# - NousResearch/Hermes-4-405B
+# - NousResearch/Hermes-4-70B
+# - openai/gpt-oss-20b
+# - zai-org/GLM-4.5-Air
+# - PrimeIntellect/INTELLECT-3
+# - deepseek-ai/DeepSeek-R1-0528
+# - Qwen/Qwen3-235B-A22B-Thinking-2507
+# - Qwen/Qwen3-Coder-30B-A3B-Instruct
+# - Qwen/Qwen3-30B-A3B-Instruct-2507
+# - Qwen/Qwen3-30B-A3B-Thinking-2507
+# - Qwen/Qwen3-235B-A22B-Instruct-2507
+# - Qwen/Qwen3-32B
+# - nvidia/Llama-3_1-Nemotron-Ultra-253B-v1
+# - deepseek-ai/DeepSeek-V3-0324
+# - meta-llama/Llama-3.3-70B-Instruct
+# - meta-llama/Meta-Llama-3.1-8B-Instruct
+# - Qwen/Qwen2.5-Coder-7B-fast
+# - google/gemma-2-2b-it
+# - google/gemma-2-9b-it-fast
+
+# Processing Configuration
+processing:
+  # Task mode: "translate", "summarize", or "both"
+  mode: "summarize"
+
+  # File types to process (extensions without dot)
+  file_types:
+    - "pdf"
+
+  # PDF handling method: "extract" (extract text first) or "direct" (send PDF directly to LLM)
+  pdf_method: "extract"
+
+  # Output language
+  output_language: "Persian"
+
+  # Output format: "docx", "tex", "txt", or "md"
+  output_format: "docx"
+
+# Formatting Settings (for DOCX output)
+formatting:
+  # Text direction: "ltr" (left-to-right) or "rtl" (right-to-left)
+  # Auto-detected based on output_language (Persian, Arabic, Hebrew, Urdu = RTL)
+  text_direction: "auto"
+
+  # Font settings
+  font:
+    # Font name (for Persian: "B Nazanin", "IRNazanin", "Tahoma", etc.)
+    name: "B Nazanin"
+
+    # Font size in points
+    size: 13
+
+    # Heading font size
+    heading_size: 16
+
+# Directory Paths
+paths:
+  input_dir: "papers"
+  translate_dir: "translates"
+  summarize_dir: "summarizations"
+
+# Prompts
+prompts:
+  translation: |
+    You are a professional translator. Translate the following academic paper text from its original language to {output_language}.
+
+    Important instructions:
+    - Maintain all technical terms and academic terminology accurately
+    - Preserve the formatting, structure, and academic style
+    - Keep mathematical formulas, equations, and citations unchanged
+    - Ensure the translation is clear, precise, and academically appropriate
+    - Do not add any commentary or explanations, only provide the translation
+
+    Text to translate:
+
+    {content}
+
+  summarization: |
+    You are an academic research assistant. Please provide a comprehensive summary of the following academic paper in {output_language}.
+
+    Your summary should include:
+    - Focus on the main contributions, methodology, and results.
+    - Main research question or objective
+    - Methodology used
+    - Key findings and results
+    - Conclusions and implications
+    - Important contributions to the field
+
+    Keep the summary concise but informative (approximately 500-750 words).
+    
+
+    Paper text:
+
+    {content}
+
+# Advanced Settings
+advanced:
+  # Maximum tokens for LLM response
+  max_tokens: 10000
+
+  # Temperature for LLM (0.0-1.0)
+  temperature: 0.3
+
+  # Maximum content size in characters (larger PDFs will be truncated)
+  # Set to 0 for unlimited (warning: very large PDFs may cause timeouts)
+  max_content_chars: 100000
+
+  # API timeout in seconds
+  timeout: 300
+
+  # Show progress bar
+  show_progress: true
+
+  # Continue on error (skip failed files and continue processing)
+  continue_on_error: true
+
+  # Enable detailed timing information
+  show_timing: true
+
+  # Skip files that have already been processed (output file exists)
+  skip_existing: true
