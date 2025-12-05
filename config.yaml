@@ -1,7 +1,7 @@
 # API Configuration
 api:
   base_url: "https://api.tokenfactory.nebius.com/v1/"
-  api_key: "v1.CmQKHHN0YXRpY2tleS1lMDBwenJzbjllbmVzYm5udDYSIXNlcnZpY2VhY2NvdW50LWUwMGtkdHY3Z3RmemQ5ajF3ejIMCMmrmMkGEJjasZ4COgwIyK6wlAcQgIe5ggJAAloDZTAw.AAAAAAAAAAGHGKYqMVlu_II6VT9QPPOrQAGTfTXZSaoC7kJnFwJB5DF54LhLIyCMaKMhsBZlRmVVbGU5cgyc9q9O64EL5QUA"
+  api_key: ""
   model: "meta-llama/Llama-3.3-70B-Instruct"
 
 # Available models (for reference):
